@@ -8,7 +8,7 @@
 
 An implementation package for [md-file-converter](https://www.npmjs.com/package/md-file-converter).
 
-This implementation output a `SUMMARY.md` file in the format expected by [developpez.com website](https://www.developpez.com/) for the FAQ documents.
+This implementation output a `<filename>.md` file in the format expected by [developpez.com website](https://www.developpez.com/) for the FAQ documents.
 
 ## installation
 
@@ -23,5 +23,5 @@ npm i -D dvlp-faq-md-summary
 Invoke the CLI with the following :
 
 ```bash
-node ./node_modules/.bin/mdfc convert 'dvlp-faq-md-summary' '<news-markdown-file-path>'
+node ./node_modules/.bin/mdfc convert 'dvlp-faq-md-summary' '<faq-markdown-files-glob>' --dest '<dest-dir-path>' --filename '<filename-without-ext>'
 ```
