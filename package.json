@@ -1,0 +1,61 @@
+{
+    "name": "dvlp-faq-md-summary",
+    "version": "0.1.0",
+    "description": "Developpez.com FAQ SUMMARY FAQ impl for md-file-converter",
+    "author": "marlou <pro@marc-loupias.fr>",
+    "contributors": [
+        {
+            "name": "Marc Loupias",
+            "email": "pro@marc-loupias.fr",
+            "url": "https://github.com/MarcLoupias"
+        }
+    ],
+    "keywords": [
+        "md-file-converter",
+        "markdown",
+        "converter",
+        "marked"
+    ],
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/MarcLoupias/dvlp-faq-md-summary"
+    },
+    "bugs": {
+        "url": "https://github.com/MarcLoupias/dvlp-faq-md-summary/issues"
+    },
+    "homepage": "https://github.com/MarcLoupias/dvlp-faq-md-summary",
+    "engines": {
+        "node": ">=10.13.0",
+        "npm": ">=6.4.1"
+    },
+    "main": "bin/index.js",
+    "scripts": {
+        "start": "node ./node_modules/.bin/mdfc convert '../../../dist' 'tests/actual-files/faq/**/*.md' --filename 'SUMMARY'",
+        "lint": "./node_modules/.bin/eslint -c .eslintrc.json tests/*.spec.js",
+        "lint-ts": "./node_modules/tslint/bin/tslint -t stylish -c tslint.json src/**/*.ts src/*.ts",
+        "compile": "rimraf 'dist/' && ./node_modules/.bin/tsc --pretty --project 'tsconfig-dev.json'",
+        "pretest": "npm run compile && npm run lint && npm run lint-ts && chmod 764 dist/index.js",
+        "test": "NODE_NO_WARNINGS=1 mocha --bail tests/*.spec.js",
+        "posttest": "chmod 664 dist/index.js",
+        "prebuild": "rimraf bin/",
+        "build": "./node_modules/.bin/tsc --pretty && chmod 764 bin/index.js",
+        "postbuild": "NODE_NO_WARNINGS=1 mocha --bail tests/*.spec.js && chmod 664 bin/index.js"
+    },
+    "dependencies": {
+        "marked": "^0.6.0",
+        "md-file-converter": "1.0.1"
+    },
+    "devDependencies": {
+        "@types/marked": "^0.6.0",
+        "@types/node": "^10.12.0",
+        "chai": "^4.2.0",
+        "mocha": "^5.2.0",
+        "rimraf": "2.6.3",
+        "eslint": "^5.11.1",
+        "eslint-plugin-node": "^8.0.0",
+        "eslint-plugin-security": "^1.4.0",
+        "tslint": "5.12.1",
+        "typescript": "3.3.1"
+    }
+}
