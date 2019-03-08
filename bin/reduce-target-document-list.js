@@ -62,9 +62,6 @@ entete:
     serveur: ${fmMetaData.getEntete().serveur}
     chemin: ${fmMetaData.getEntete().chemin}
     urlhttp: ${fmMetaData.getEntete().urlhttp}
-    pdf:
-        sautDePageAvantSection: ${fmMetaData.getEntete().getPdf().sautDePageAvantSection}
-        notesBasPage: ${fmMetaData.getEntete().getPdf().notesBasPage}
     nomfaq: ${fmMetaData.getEntete().nomfaq}
 
 edito: ${fmMetaData.edito}
