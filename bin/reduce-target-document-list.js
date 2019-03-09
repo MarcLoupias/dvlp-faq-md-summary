@@ -39,6 +39,7 @@ function initMdDocument(reducedTargetDocumentList, targetDocumentToReduceCurrent
 }
 function finalizeMdDocument(reducedTargetDocumentList) {
     const fmMetaData = reducedTargetDocumentList[0].fmMetaData;
+    const gaYamlProp = (fmMetaData.getEntete().googleAnalytics) ? `\n    googleAnalytics: ${fmMetaData.getEntete().googleAnalytics}` : '';
     reducedTargetDocumentList[0].transformedData = `---
 ${reducedTargetDocumentList[0].yamlAuthorList}
 editeur:
@@ -54,8 +55,7 @@ entete:
         page: ${fmMetaData.getEntete().getTitre().page}
         article: ${fmMetaData.getEntete().getTitre().article}
     date: ${fmMetaData.getEntete().getDate()}
-    miseajour: ${fmMetaData.getEntete().getMiseajour()}
-    googleAnalytics: ${fmMetaData.getEntete().googleAnalytics}
+    miseajour: ${fmMetaData.getEntete().getMiseajour()}${gaYamlProp}
     licauteur: ${fmMetaData.getEntete().licauteur}
     lictype: ${fmMetaData.getEntete().lictype}
     licannee: ${fmMetaData.getEntete().licannee}
