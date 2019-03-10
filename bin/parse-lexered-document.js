@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const md_file_converter_1 = require("md-file-converter");
 const model_impl_1 = require("./model-impl");
-const front_matter_1 = require("./model-impl/front-matter");
+const dvlp_commons_1 = require("dvlp-commons");
 function parseLexeredDocument(mdLexeredDocument) {
     function getQuestionTitleToken(tokens) {
         for (const token of tokens) {
@@ -25,14 +25,14 @@ function parseLexeredDocument(mdLexeredDocument) {
         return md_file_converter_1.MdParsedDocument.createMdParsedDocument({
             documentPaths: mdLexeredDocument.documentPaths,
             parsedTokensList: mdLexeredDocument.tokensList,
-            fmMetaData: new front_matter_1.FmSummary(mdLexeredDocument.fmMetaData)
+            fmMetaData: new dvlp_commons_1.FmSummary(mdLexeredDocument.fmMetaData)
         });
     }
     else {
         return model_impl_1.MdParsedDocumentImpl.createMdParsedDocumentImpl(md_file_converter_1.MdParsedDocument.createMdParsedDocument({
             documentPaths: mdLexeredDocument.documentPaths,
             parsedTokensList: mdLexeredDocument.tokensList.filter(filterIrrelevantTitlesTokens),
-            fmMetaData: new front_matter_1.FmQa(mdLexeredDocument.fmMetaData)
+            fmMetaData: new dvlp_commons_1.FmQa(mdLexeredDocument.fmMetaData)
         }), getQuestionTitleToken(mdLexeredDocument.tokensList), getSectionTitleToken(mdLexeredDocument.tokensList));
     }
 }

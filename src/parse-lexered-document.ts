@@ -2,7 +2,7 @@
 
 import { IMdParsedDocument, MdLexeredDocument, MdParsedDocument } from 'md-file-converter';
 import { MdParsedDocumentImpl } from './model-impl';
-import { FmSummary, FmQa } from './model-impl/front-matter';
+import { FmSummary, FmQa } from 'dvlp-commons';
 import { Token, TokensList } from 'marked';
 
 export function parseLexeredDocument(mdLexeredDocument: MdLexeredDocument): IMdParsedDocument {
