@@ -8,9 +8,13 @@ export function getReducerConf(initialValues: { targetDocumentPaths: IDocumentPa
         return targetDocument.documentPaths.basename !== 'SUMMARY';
     });
 
-    const faqMetaData = initialValues.targetDocumentList.filter((targetDocument: TargetDocument) => {
+    const summaries = initialValues.targetDocumentList.filter((targetDocument: TargetDocument) => {
         return targetDocument.documentPaths.basename === 'SUMMARY';
-    })[0].fmMetaData;
+    });
+    if (summaries.length === 0) {
+        throw new Error('SUMMARY.md file not found');
+    }
+    const faqMetaData = summaries[0].fmMetaData;
 
     const initialValue = [
         ReducedTargetDocumentImpl.createReducedTargetDocumentImpl(
