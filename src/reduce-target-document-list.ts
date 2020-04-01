@@ -47,7 +47,10 @@ function initMdDocument(reducedTargetDocumentList: ReducedTargetDocumentImpl[], 
                 return qaMd + listItem;
             }, '');
 
-            return md + `\n${section[1].sectionTitle}\n${links}`;
+            // section[0] contains the name of the section (e.g.: 'section-002-001')
+            // We count the number of dash to add title level in the summary (initially the section title has two '#')
+            const level = section[0].split('-').length - 2;
+            return md + `\n${'#'.repeat(level)}${section[1].sectionTitle}\n${links}`;
         }, '');
 
     return reducedTargetDocumentList;
