@@ -3,8 +3,8 @@
 import { IDocumentPaths, ITargetDocument } from 'md-file-converter';
 
 export class TargetDocumentImpl implements ITargetDocument {
-    public static createTargetDocumentImpl(targetDocument: ITargetDocument, sectionName: string, sectionTitle: string): TargetDocumentImpl {
-        return new TargetDocumentImpl(targetDocument, sectionName, sectionTitle);
+    public static createTargetDocumentImpl(targetDocument: ITargetDocument, sectionTitle: string): TargetDocumentImpl {
+        return new TargetDocumentImpl(targetDocument, sectionTitle);
     }
 
     public documentPaths: IDocumentPaths;
@@ -13,16 +13,18 @@ export class TargetDocumentImpl implements ITargetDocument {
     public sectionTitle: string;
     private sectionName: string;
 
-    protected constructor(targetDocument: ITargetDocument, sectionName: string, sectionTitle: string) {
+    protected constructor(targetDocument: ITargetDocument, sectionTitle: string) {
         this.documentPaths = targetDocument.documentPaths;
         this.transformedData = targetDocument.transformedData;
         this.fmMetaData = targetDocument.fmMetaData || null;
-        this.setSectionName(sectionName);
+        this.setSectionName(targetDocument.documentPaths.src);
         this.sectionTitle = sectionTitle;
     }
 
-    public setSectionName(sectionName: string): void {
-        this.sectionName = 'section-' + sectionName.substring(0, 3);
+    public setSectionName(path: string): void {
+        const lastFolderSep = path.lastIndexOf('/');
+        const previousLastFolderSep = path.lastIndexOf('/', lastFolderSep - 1);
+        this.sectionName = path.substring(previousLastFolderSep + 1, lastFolderSep);
     }
 
     public getSectionName(): string {
