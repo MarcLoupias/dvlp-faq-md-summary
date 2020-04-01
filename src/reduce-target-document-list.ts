@@ -40,8 +40,14 @@ function initMdDocument(reducedTargetDocumentList: ReducedTargetDocumentImpl[], 
             }
         }, {});
 
+    // Sort, to have inner section following the parent section
+    const sectionListObjectOrdered: any = {};
+    Object.keys(sectionListObject).sort().forEach((key)  => {
+        sectionListObjectOrdered[key] = sectionListObject[key];
+    });
+
     reducedTargetDocumentList[0].mdSectionList = Object
-        .entries(sectionListObject)
+        .entries(sectionListObjectOrdered)
         .reduce((md: string, section: any) => {
             const links = section[1].qaList.reduce((qaMd: string, listItem: string) => {
                 return qaMd + listItem;
