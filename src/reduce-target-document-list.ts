@@ -40,23 +40,20 @@ function initMdDocument(reducedTargetDocumentList: ReducedTargetDocumentImpl[], 
             }
         }, {});
 
-    // Sort, to have inner section following the parent section
-    const sectionListObjectOrdered: any = {};
-    Object.keys(sectionListObject).sort().forEach((key)  => {
-        sectionListObjectOrdered[key] = sectionListObject[key];
+    // Sortint section to have inner section following the parent section
+    const orderedSectionNames: string[] = Object.keys(sectionListObject).sort().map((key)  => {
+        return key;
     });
 
-    reducedTargetDocumentList[0].mdSectionList = Object
-        .entries(sectionListObjectOrdered)
-        .reduce((md: string, section: any) => {
-            const links = section[1].qaList.reduce((qaMd: string, listItem: string) => {
+    reducedTargetDocumentList[0].mdSectionList = orderedSectionNames.reduce((md: string, sectionName: string) => {
+            const links = sectionListObject[sectionName].qaList.reduce((qaMd: string, listItem: string) => {
                 return qaMd + listItem;
             }, '');
 
             // section[0] contains the name of the section (e.g.: 'section-002-001')
             // We count the number of dash to add title level in the summary (initially the section title has two '#')
-            const level = section[0].split('-').length - 2;
-            return md + `\n${'#'.repeat(level)}${section[1].sectionTitle}\n${links}`;
+            const level = sectionName.split('-').length - 2;
+            return md + `\n${'#'.repeat(level)}${sectionListObject[sectionName].sectionTitle}\n${links}`;
         }, '');
 
     return reducedTargetDocumentList;
