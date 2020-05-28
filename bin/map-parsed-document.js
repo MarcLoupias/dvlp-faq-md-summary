@@ -25,7 +25,7 @@ function makeUnConfiguredMapParsedDocument({ marked }) {
                     documentPaths: mdParsedDocumentImpl.documentPaths,
                     transformedData,
                     fmMetaData: mdParsedDocumentImpl.fmMetaData
-                }), mdParsedDocumentImpl.documentPaths.basename, parseWithMarked(mdParsedDocumentImpl.sectionTitleToken));
+                }), parseWithMarked(mdParsedDocumentImpl.sectionTitleToken));
             }
         };
     };

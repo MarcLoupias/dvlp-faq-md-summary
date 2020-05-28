@@ -33,7 +33,6 @@ export function makeUnConfiguredMapParsedDocument({ marked }: any): UnConfigured
                         transformedData,
                         fmMetaData: mdParsedDocumentImpl.fmMetaData
                     }),
-                    mdParsedDocumentImpl.documentPaths.basename,
                     parseWithMarked(mdParsedDocumentImpl.sectionTitleToken)
                 );
             }

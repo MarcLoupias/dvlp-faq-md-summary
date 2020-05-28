@@ -58,6 +58,11 @@ licence: CC-BY-SA-4.0
 - [Comment installer Git sur macOS ?](section-002/002.q002.md)
 - [Comment installer Git sur Linux ?](section-002/002.q003.md)
 
+### 2.1 Configuration
+
+- [Comment définir l'adresse email ?](section-002-001/002.q001.md)
+- [Comment définir le nom de l'utilisateur ?](section-002-001/002.q002.md)
+
 ## 3 Initialisation d’un dépôt
 
 - [Comment initialiser un dépôt ?](section-003/003.q001.md)

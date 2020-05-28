@@ -27,13 +27,15 @@ function initMdDocument(reducedTargetDocumentList, targetDocumentToReduceCurrent
             return sections;
         }
     }, {});
-    reducedTargetDocumentList[0].mdSectionList = Object
-        .entries(sectionListObject)
-        .reduce((md, section) => {
-        const links = section[1].qaList.reduce((qaMd, listItem) => {
+    const orderedSectionNames = Object.keys(sectionListObject).sort().map((key) => {
+        return key;
+    });
+    reducedTargetDocumentList[0].mdSectionList = orderedSectionNames.reduce((md, sectionName) => {
+        const links = sectionListObject[sectionName].qaList.reduce((qaMd, listItem) => {
             return qaMd + listItem;
         }, '');
-        return md + `\n${section[1].sectionTitle}\n${links}`;
+        const level = sectionName.split('-').length - 2;
+        return md + `\n${'#'.repeat(level)}${sectionListObject[sectionName].sectionTitle}\n${links}`;
     }, '');
     return reducedTargetDocumentList;
 }

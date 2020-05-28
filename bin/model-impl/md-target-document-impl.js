@@ -1,18 +1,20 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 class TargetDocumentImpl {
-    static createTargetDocumentImpl(targetDocument, sectionName, sectionTitle) {
-        return new TargetDocumentImpl(targetDocument, sectionName, sectionTitle);
+    static createTargetDocumentImpl(targetDocument, sectionTitle) {
+        return new TargetDocumentImpl(targetDocument, sectionTitle);
     }
-    constructor(targetDocument, sectionName, sectionTitle) {
+    constructor(targetDocument, sectionTitle) {
         this.documentPaths = targetDocument.documentPaths;
         this.transformedData = targetDocument.transformedData;
         this.fmMetaData = targetDocument.fmMetaData || null;
-        this.setSectionName(sectionName);
+        this.setSectionName(targetDocument.documentPaths.src);
         this.sectionTitle = sectionTitle;
     }
-    setSectionName(sectionName) {
-        this.sectionName = 'section-' + sectionName.substring(0, 3);
+    setSectionName(path) {
+        const lastFolderSep = path.lastIndexOf('/');
+        const previousLastFolderSep = path.lastIndexOf('/', lastFolderSep - 1);
+        this.sectionName = path.substring(previousLastFolderSep + 1, lastFolderSep);
     }
     getSectionName() {
         return this.sectionName;
