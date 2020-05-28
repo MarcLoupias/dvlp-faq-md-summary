@@ -6,9 +6,13 @@ function getReducerConf(initialValues) {
     const arr = initialValues.targetDocumentList.filter((targetDocument) => {
         return targetDocument.documentPaths.basename !== 'SUMMARY';
     });
-    const faqMetaData = initialValues.targetDocumentList.filter((targetDocument) => {
+    const summaries = initialValues.targetDocumentList.filter((targetDocument) => {
         return targetDocument.documentPaths.basename === 'SUMMARY';
-    })[0].fmMetaData;
+    });
+    if (summaries.length === 0) {
+        throw new Error('SUMMARY.md file not found');
+    }
+    const faqMetaData = summaries[0].fmMetaData;
     const initialValue = [
         model_impl_1.ReducedTargetDocumentImpl.createReducedTargetDocumentImpl(md_file_converter_1.TargetDocument.createTargetDocument({
             documentPaths: initialValues.targetDocumentPaths,
